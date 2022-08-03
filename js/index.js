@@ -60,6 +60,7 @@ function crearCatalogo(){
             </div>
         </div>
         `;
+        renovarStorage()
     });
     botonCompra()
 }
@@ -72,7 +73,7 @@ function botonCompra(){
     arrayDeBotones.forEach((boton) => {
     
     boton.addEventListener("click", (e) => {
-        const productoSeleccionado = listaProductos.find(
+        const productoSeleccionado = catalogo.find(
             (producto) => producto.id == e.target.id
         );
         const enCarrito = carrito.producto.find((producto) => producto.id == e.target.id)
@@ -227,30 +228,28 @@ function total() {
 
 function renovarStorage() {
     localStorage.removeItem("carrito");
-    localStorage.removeItem("catalogo");
+    // localStorage.removeItem("catalogo");
     localStorage.setItem("carrito", JSON.stringify(carrito));
-    localStorage.setItem("catalogo", JSON.stringify(carrito.producto));
-    console.log(carrito)
-    console.log(catalogo)
-}
+//     // localStorage.setItem("catalogo", JSON.stringify(carrito.producto));
+//     console.log(carrito)
+//     console.log(catalogo)
+// }
 
-function listaActualizada(storage2){
-    storage2.forEach((producto) => {
-        listaProductos.push(producto)
-    }) 
+// function listaActualizada(storage2){
+//     storage2.forEach((producto) => {
+//         listaProductos.push(producto)
+//     }) 
 }
 
 window.addEventListener("DOMContentLoaded", (e) => {
 
     const storage = JSON.parse(localStorage.getItem("carrito"));
-    const storage2= JSON.parse(localStorage.getItem("catalogo"));
+    // const storage2= JSON.parse(localStorage.getItem("catalogo"));
     
     storage == null ? renovarStorage() : storage.producto.forEach((producto) => {
         carrito.producto.push(producto);
     });
-    
-    const permiso = (carrito.producto.length == 0) ? true : false
-    permiso ? console.log("carrito vacio") : listaActualizada(storage2)
+    // listaActualizada(storage2)
     console.log(carrito)
     actualizarCarrito(carrito);
     total();
