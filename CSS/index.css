@@ -15,8 +15,21 @@ body{
 }
 .titulo{
     background-color: red;
+    text-align: center;
+    margin: 0, auto;
 }
 
 .tarjeta{
     border: double, 4px, #4C4AF8;
+}
+.carritoButton{
+    height: 25px;
+    width: 25px;
+}
+.carritoIndex{
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    bottom: 5px;
+    right: 15px;
 }
